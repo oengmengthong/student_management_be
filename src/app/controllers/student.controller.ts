@@ -7,7 +7,12 @@ const studentService = new StudentService();
 
 export const createStudent = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const validatedData = studentSchema.parse(req.body); // Validate the input data
+    const data = {
+      ...req.body,
+      age: Number(req.body.age),
+    };
+
+    const validatedData = studentSchema.parse(data); // Validate the input data
     const newStudent = await studentService.createStudent(validatedData);
     return sendSuccess(res, newStudent, 'Student created successfully');
   } catch (error) {

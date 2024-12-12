@@ -7,7 +7,7 @@ const classService = new ClassService();
 
 export const createClass = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const validatedData = classSchema.parse(req.body); // Validate the input data
+    const validatedData = classSchema.parse(req.body); 
     const newClass = await classService.createClass(validatedData);
     return sendSuccess(res, newClass, 'Class created successfully');
   } catch (error) {
